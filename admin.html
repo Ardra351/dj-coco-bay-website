@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#062b19">
+  <meta name="description" content="DJ Coco Bay order dashboard.">
+  <title>Order Dashboard | DJ Coco Bay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+  <div class="site-shell">
+    <header class="admin-header">
+      <a class="admin-brand" href="index.html">
+        <img src="assets/coco-bay-emblem.png" alt="">
+        <span><small>DJ COCO BAY</small><strong>Order dashboard</strong></span>
+      </a>
+      <a class="admin-menu-link" href="menu.html">← Back to menu</a>
+    </header>
+
+    <main id="admin-login" class="admin-login" hidden>
+      <p class="section-kicker">PRIVATE BUSINESS ACCESS</p>
+      <h1 id="auth-title">Admin sign in</h1>
+      <p id="auth-instructions">Enter the business admin password to view customer orders.</p>
+      <form id="admin-auth-form">
+        <label>Password<input id="admin-password" type="password" autocomplete="current-password" required minlength="1"></label>
+        <label id="confirm-password-wrap" hidden>Confirm password<input id="confirm-password" type="password" autocomplete="new-password" minlength="12"></label>
+        <p id="auth-error" class="auth-error" role="alert" hidden></p>
+        <button id="auth-submit" class="checkout-button" type="submit">Sign in</button>
+      </form>
+      <p class="auth-note">On first use, set a password with at least 12 characters. This static-site gate is browser-only, not server authentication.</p>
+    </main>
+
+    <main id="admin-dashboard" class="admin-main" hidden>
+      <section class="admin-title-row">
+        <div>
+          <p class="section-kicker">BUSINESS ADMIN</p>
+          <h1>Orders</h1>
+        </div>
+        <div class="admin-actions">
+          <button class="small-button outline" id="admin-logout" type="button">Log out</button>
+          <button class="small-button outline" id="refresh-orders" type="button">Refresh</button>
+          <button class="small-button" id="export-orders" type="button">Export CSV</button>
+        </div>
+      </section>
+
+      <p class="admin-notice">Orders and the password verifier are stored in this browser only. This gate does not protect data from someone with access to browser storage. Use server-side authentication and a database for live customer data.</p>
+
+      <section class="order-stats" aria-label="Order totals">
+        <div><span>All orders</span><strong id="stat-all">0</strong></div>
+        <div><span>New</span><strong id="stat-new">0</strong></div>
+        <div><span>In progress</span><strong id="stat-progress">0</strong></div>
+        <div><span>Ready</span><strong id="stat-ready">0</strong></div>
+      </section>
+
+      <section class="order-toolbar" aria-label="Filter orders">
+        <label class="search-orders">Search<input id="order-search" type="search" placeholder="Name, phone or order ID"></label>
+        <label>Status
+          <select id="order-filter">
+            <option value="All">All statuses</option>
+            <option value="New">New</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Preparing">Preparing</option>
+            <option value="Ready for pickup">Ready for pickup</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </label>
+      </section>
+
+      <section id="orders-list" class="orders-list" aria-live="polite"></section>
+    </main>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

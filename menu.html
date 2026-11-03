@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#062b19">
+  <meta name="description" content="Browse the fresh tender coconut menu at DJ Coco Bay.">
+  <title>Our Menu | DJ Coco Bay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="hero menu-hero">
+      <div class="top-line"><a href="index.html">← DJ COCO BAY</a><a class="admin-shortcut" href="admin.html">Business admin →</a></div>
+      <img class="brand-mark" src="assets/coco-bay-emblem.png" alt="DJ Coco Bay emblem">
+      <p class="eyebrow">FRESH <i>•</i> HEALTHY <i>•</i> DELICIOUS</p>
+      <h1>Our <em>Menu</em></h1>
+      <p class="hero-note">Choose a category to explore</p>
+    </header>
+
+    <main>
+      <section class="intro menu-intro">
+        <p class="section-kicker">MADE FRESH, SERVED WITH LOVE</p>
+        <h2>Menu <span>categories</span></h2>
+        <p>Tap a category to see its tender coconut specialties and prices.</p>
+      </section>
+      <div id="menu-sections" class="menu-grid" aria-live="polite"></div>
+    </main>
+
+    <footer>
+      <img src="assets/coco-bay-emblem.png" alt="" class="footer-logo">
+      <p class="footer-brand">DJ COCO BAY</p>
+      <p>PURE · NATURAL · TRUSTED</p>
+      <p class="copyright">© <span id="year"></span> DJ Coco Bay. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <button class="cart-toggle" id="cart-toggle" type="button" aria-label="Open shopping cart">
+    <span aria-hidden="true">▣</span> Cart <span class="cart-count" id="cart-count">0</span>
+  </button>
+
+  <button class="admin-toggle" id="admin-toggle" type="button" aria-label="Open menu editor" hidden>✎ <span>Edit menu</span></button>
+
+  <dialog id="cart-dialog" class="cart-dialog">
+    <div class="cart-head">
+      <div><p class="section-kicker">DJ COCO BAY</p><h2>Your order</h2></div>
+      <button class="icon-button" id="close-cart" type="button" aria-label="Close cart">×</button>
+    </div>
+    <div id="cart-items" class="cart-items" aria-live="polite"></div>
+    <div class="cart-total-row"><span>Total</span><strong id="cart-total">₹0</strong></div>
+    <form id="checkout-form" class="checkout-form">
+      <h3>Pickup details</h3>
+      <label> Your name <input name="customerName" type="text" autocomplete="name" required maxlength="80"></label>
+      <label> Mobile number <input name="customerPhone" type="tel" autocomplete="tel" required inputmode="tel" pattern="\+?[0-9]{7,15}" maxlength="16"></label>
+      <label> Pickup time
+        <select name="pickupTime">
+          <option value="As soon as possible">As soon as possible</option>
+          <option value="In 30 minutes">In 30 minutes</option>
+          <option value="In 1 hour">In 1 hour</option>
+        </select>
+      </label>
+      <fieldset class="payment-options">
+        <legend>Payment at pickup</legend>
+        <label><input type="radio" name="paymentMethod" value="Cash" checked> Cash</label>
+        <label><input type="radio" name="paymentMethod" value="UPI"> UPI</label>
+      </fieldset>
+      <button class="checkout-button" id="place-order" type="submit">Place order</button>
+      <p class="checkout-note">Orders are stored only in this browser for admin review. Payment is due at pickup.</p>
+    </form>
+    <section id="order-confirmation" class="order-confirmation" hidden aria-live="polite">
+      <p class="section-kicker">ORDER SUMMARY</p>
+      <h3>Order saved</h3>
+      <p id="order-summary"></p>
+      <p class="checkout-note">Saved in this browser for the business admin. Contact the shop to confirm your order.</p>
+      <button class="small-button" id="print-order" type="button">Print order summary</button>
+    </section>
+  </dialog>
+
+  <dialog id="editor-dialog" class="editor-dialog">
+    <div class="editor-head">
+      <div><p class="section-kicker">OWNER TOOLS</p><h2>Menu editor</h2></div>
+      <button class="icon-button" id="close-editor" aria-label="Close editor">×</button>
+    </div>
+    <p class="editor-help">Changes are saved in this browser. Use Export to keep a backup or move your menu to another device.</p>
+    <div class="editor-actions">
+      <button class="small-button" id="add-category">＋ Add category</button>
+      <button class="small-button outline" id="export-menu">Export menu</button>
+      <label class="small-button outline import-label">Import menu<input type="file" id="import-menu" accept="application/json"></label>
+    </div>
+    <div id="editor-content"></div>
+    <div class="editor-footer">
+      <button class="small-button danger" id="reset-menu">Reset to original menu</button>
+      <button class="small-button" id="done-editor">Done</button>
+    </div>
+    <p class="editor-warning">Menu editing requires the admin session in this browser. Changes are saved here only; use a secure backend and authenticated admin account for shared business editing.</p>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
